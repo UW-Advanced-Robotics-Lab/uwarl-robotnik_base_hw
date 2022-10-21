@@ -13,17 +13,17 @@ robotnik_base_hw:
   # Summit rubber wheels: 0.22, Summit omni wheels: 0.25, RB1: 0.1524 
   diameter_wheel: 0.1524
   # 24V motors: 12.52, 48V motors: 9.56, RB1 Accelerated: 7.5 (9.56?)
-  gearbox_ratio: 12.52
+  gearbox_ratio: 9.56
   # Be carefull if motors don't have enconders and you put motors_enconder: true speed will increase x 4000
   motors_encoder: true
   motors_encoder_factor: 4000
   max_rated_peak_current_drive: 40.0
 
-  joint_name: [rb1_base_left_wheel_joint,rb1_base_right_wheel_joint]
-  joint_can_id: [1,2]
-  joint_type: [vel,vel]
-  joint_home_offset: [0,0]
-  joint_spin: [1,-1]
+  joint_name: [summit_xl_front_left_wheel_joint,summit_xl_back_left_wheel_joint,summit_xl_front_right_wheel_joint,summit_xl_back_right_wheel_joint]
+  joint_can_id: [1,2,3,4]
+  joint_type: [vel,vel,vel,vel]
+  joint_home_offset: [0,0,0,0]
+  joint_spin: [1,1,-1,-1]
 
   # Values to multiply on IO raw data received
   k_analog_inputs_multipliers: [6.978947368, -12.5, 1.0, 1.0]
@@ -91,12 +91,8 @@ generic_hw_control_loop:
 # Settings for ros_control hardware interface
 hardware_interface:
   joints:
-     #- joint_front_right_wheel
-     #- joint_front_left_wheel
-     #- joint_back_right_wheel
-     #- joint_back_left_wheel
+    - summit_xl_front_right_wheel_joint
+    - summit_xl_front_left_wheel_joint
+    - summit_xl_back_right_wheel_joint
+    - summit_xl_back_left_wheel_joint
 
-     - rb1_base_left_wheel_joint
-     - rb1_base_right_wheel_joint
-   
-     

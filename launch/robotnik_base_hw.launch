@@ -17,10 +17,15 @@
     <rosparam file="$(arg base_hw_limits)" command="load" />    
     <rosparam file="$(arg base_hw_config)" command="load" />    
 
+    <arg name="robot_gearbox" default="$(optenv ROBOT_GEARBOX 12.52)"/>
+    <arg name="has_encoder" default="$(optenv ROBOT_HAS_ENCODER false)"/> 
+
     <node name="robotnik_base_hw" pkg="robotnik_base_hw" type="robotnik_base_hw_node" output="screen" launch-prefix="$(arg launch_prefix)" >
         <param name="k_battery_voltage_offset" value="$(arg battery_voltage_offset)"/>
-
+    	<param name="gearbox_ratio" value="$(arg robot_gearbox)"/>
+		<param name="motors_encoder" value="$(arg has_encoder)"/>
         <!--param name="k_analog_inputs_multipliers" value="$(arg k_analog_inputs_multipliers)"/-->
     </node>
 	
 </launch>
+3
